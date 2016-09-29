@@ -1,14 +1,14 @@
 /// <reference path="../typings/jest/jest.d.ts" />
 
 describe('TypeScript', function() {
-  xdescribe('let', function() {
+  describe('let', function() {
     it('use instead of var', function() {
-      let x;
+      let x = 1;
       expect(x).toEqual(1);
     });
 
     it('assign in block scope not function scope', function() {
-      let x = 2;
+      let x = 1;
       if (true) {
         let x = 1;
       }
@@ -16,40 +16,38 @@ describe('TypeScript', function() {
     });
   });
 
-  xdescribe('const', function() {
+  describe('const', function() {
     it('cannot reassign twice', function() {
       const CONSTANT = 1;
-      //CONSTANT = 2;
     });
   });
 
-  xdescribe('type', function() {
+  describe('type', function() {
     it('is number', function() {
-      let x: number;
+      let x: number = 0;
       expect(x).toEqual(0);
     });
 
     it('is string', function() {
-      let word: string;
+      let word: string = 'Hello TypeScript';
       expect(word).toEqual('Hello TypeScript');
     });
 
     describe('template string', function() {
       it('use for make string multiple line', function() {
-        let word: string = `Line 1
-Line 2`;
+        let word: string = ``;
         expect(word).toEqual('');
       });
 
       it('use for embed variable to string', function() {
         let luckyNumber: number = 7;
-        let word: string = `lucky number is `;
+        let word: string = `lucky number is ${luckyNumber}`;
         expect(word).toEqual('lucky number is 7');
       });
     });
 
     it('is boolean', function() {
-      let tf: boolean;
+      let tf: boolean = true;
       expect(tf).toEqual(true);
     });
 
@@ -65,21 +63,21 @@ Line 2`;
 
     describe('any', function() {
       it('can assign any type to variable', function() {
-        let x: any = 1;
+        let x: any = 'text';
         expect(x).toEqual('text');
       });
 
       it('implicit type any by default', function() {
-        let x = 1;
+        let x = "text";
         expect(x).toEqual('text');
       });
     });
   });
 
-  xdescribe('function', function() {
+  describe('function', function() {
     describe('syntax', function() {
       it('use function keyword to declare function', function() {
-        function something() {
+        function something() : string {
           return 'word';
         }
 
@@ -88,7 +86,7 @@ Line 2`;
 
       it('can declare type', function() {
         function something(): string {
-          return undefined;
+          return 'word';
         }
 
         expect(something()).toEqual('word');
@@ -103,7 +101,7 @@ Line 2`;
     });
   });
 
-  xdescribe('union', function() {
+  describe('union', function() {
     function padLeft(value: string, padding: any) {
       if (typeof padding === "number") {
         return Array(padding + 1).join(" ") + value;
